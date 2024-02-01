@@ -2,6 +2,8 @@ const User = require("../models/User");
 const OTP = require("../models/OTP");
 const otpGenerator = require("otp-generator");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 // send OTP
 exports.sendOTP = async(req, res) => {
@@ -160,6 +162,70 @@ exports.signUp = async(req, res) => {
 
 // login
 
+exports.login = async(req, res) => {
+    try {
+        // get data from req body
+        const {email, password} = req.body;
+        
+        // validations
+        if(!email || !password) {
+            return res.status(403).json({
+                success:false,
+                messagae:"All fields are mandatory",
+            });
+        }
+        // user check exist or not
+        const user = await User.findOne({email}).populate("additionalDetails");
 
+        if(!user) {
+            return res.status(401).json({
+                success:false,
+                message:"User is not exist",
+            })
+        }
+
+        // generate the JWT, after password matching
+        if(await bcrypt.compare(password, user.password)) {
+            const payload = {
+                email:user.email,
+                id:user._id,
+                role:user.role,
+            }
+            const token = jwt.sign(payload, process.env.JWT_SECRET, {
+                expiresIn:"2h "
+            });
+            user.token = token;
+            user.password = undefined;
+
+            // create cookie and send response
+            const options = {
+                expires: new DataTransfer(Date.now() + 3*24*60*60*100),
+                httpOnly:true,
+            }
+            res.cookie("token", token, options).status(200).json({
+                success:true,
+                token,
+                user,
+                message:"User logged in successfully",
+            })
+        }
+
+        else {
+            return res.status(401).json({
+                success:false,
+                message:'Password is incorrect',
+            })
+        }
+
+        
+
+    } catch(error) {
+        console.log("Error while login the user");
+        return res.status(400).json({
+            success:false,
+            error:error,
+        });
+    }
+}
 
 // change password
