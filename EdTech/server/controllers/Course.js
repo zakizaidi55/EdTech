@@ -94,7 +94,7 @@ exports.createCourse = async(req, res) => {
 };
 
 
-exports.showAllCourses = async(req, res) => {
+exports.getAllCourses = async(req, res) => {
     try {
         const allCorses = await Course.find({}, {courseName:true,
                                                 price:true,
@@ -121,10 +121,48 @@ exports.showAllCourses = async(req, res) => {
 
 
 // get course Details
-exports.gerCourseDetails = async(req, res) => {
+exports.getCourseDetails = async(req, res) => {
     try {
-        
-    } catch(error) {
+        // get id
+        const {courseId} = req.body;
+        // find course details
+        const courseDetails = await Course.findOne(
+                                            {_id:courseId}).populate({
+                                                path:"instructor" ,
+                                                populate:{
+                                                    path:"additionalDetails",
+                                                },
+                                            })
+                                            .populate("category")
+                                            .populate("ratingAndReview")
+                                            .populate({
+                                                path:"courseContent",
+                                                populate:{
+                                                    path:"subSection",
+                                                },
+                                            }).exec()
 
+        // validations
+        if(!courseDetails) {
+            return res.status(400).json({
+                success:false,
+                message:`Could not find the course with ${courseId}`, 
+            })
+        }
+
+
+        // return response
+        return res.status(200).json({
+            success:true,
+            message:'course showed successfully',
+            data:courseDetails,
+        })
+    } catch(error) {
+        console.log("Error in getCourseDetails");
+        return res.status(500).json({
+            success:false,
+            message:'error in get course details',
+            error:error.message,
+        })
     }
 }

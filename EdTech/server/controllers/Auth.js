@@ -68,7 +68,7 @@ exports.sendOTP = async(req, res) => {
 
 // signUP
 
-exports.signUp = async(req, res) => {
+exports.signup = async(req, res) => {
     try {
     // data fetch
     const {

@@ -6,7 +6,7 @@ const mailSender = require("../utils/mailSender");
 exports.resetPasswordToken = async(req, res) => {
    
     try {
-
+  
         // get email from the req body
         const {email} = req.body;
         // check user for this email, email valdiation
