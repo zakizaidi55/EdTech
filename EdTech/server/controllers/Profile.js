@@ -1,6 +1,7 @@
 const Profile = require("../models/Profile");
 const User = require("../models/User");
-
+const {uploadImageToCloudinary} = require("../utils/imageUploader")
+require("dotenv").config();
 
 exports.updateProfile = async(req, res) => {
     try {   
@@ -66,6 +67,7 @@ exports.updateDisplayPicture = async (req, res) => {
         data: updatedProfile,
       })
     } catch (error) {
+      console.log(error.message);
       return res.status(500).json({
         success: false,
         message: error.message,
