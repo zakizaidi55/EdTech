@@ -80,21 +80,25 @@ exports.updateDisplayPicture = async (req, res) => {
 exports.deleteAccount = async (req, res) => {
     try{
         // get id
-        const id = req.body;
+        const id = req.user.id;
         // validation
-        const userDetails = await User.findById(id);
-        if(!userDetails) {
+        const user = await User.findById({_id:id});
+        if(!user) {
             return res.status(404).json( {
                 success:false,
                 message:'User not found',
 
             });
         }
+
+        
         // delete profile
-        await Profile.findByIdAndDelete({_id:userDetails.additionalDetails});
+        await Profile.findByIdAndDelete({_id:user.additionalDetails});
         // delete user
         // todo :HW: unenroll user from all enrolled course
-        await Profile.findByIdAndDelete({_id:id});
+
+        console.log("yha tak toh aagye ");
+        await User.findByIdAndDelete({_id:id});
         
         // return res
         return res.status(200).json( {
