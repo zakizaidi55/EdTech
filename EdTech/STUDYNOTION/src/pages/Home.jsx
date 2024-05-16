@@ -5,7 +5,9 @@ import HighlightText from '../components/core/Homepage/HighlightText';
 import CTAButton from '../components/core/Homepage/CTAButton';
 import Banner from "../assets/Images/banner.mp4"
 import CodeBlocks from '../components/core/Homepage/CodeBlocks';
-
+// import ExploreMore from '../components/core/Homepage/ExploreMore';
+import TimelineSection from '../components/core/Homepage/TimelineSection'
+import LearningLanguageSection from '../components/core/Homepage/LearningLanguageSection'
 function Home() {
   return (
     <div>
@@ -25,7 +27,7 @@ function Home() {
         </Link>
 
         <div className='text-center text-4xl font-semibold mt-7'>
-            Empower YourJourney with <HighlightText text={"Coding Skill"}/>
+            Empower YourJourney with <HighlightText text={" Coding Skill"}/>
         </div>
 
         <div className='mt-4 w-[90%] text-center text-lg font-bold text-richblack-300'>
@@ -60,7 +62,7 @@ function Home() {
             heading={
               <div className="text-4xl font-semibold">
                 Unlock your
-                <HighlightText text={"coding potential"} /> with our online
+                <HighlightText text={" coding potential"} /> with our online
                 courses.
               </div>
             }
@@ -90,7 +92,7 @@ function Home() {
             heading={
               <div className="w-[100%] text-4xl font-semibold lg:w-[50%]">
                 Start
-                <HighlightText text={"coding in seconds"} />
+                <HighlightText text={" coding in seconds"} />
               </div>
             }
             subheading={
@@ -111,14 +113,72 @@ function Home() {
             backgroundGradient={<div className="codeblock2 absolute"></div>}
           />
         </div>  
-
+          {/* <ExploreMore /> */}
         </div>
 
-        {/* section 2 */}
-        {/* section 3 */}
-        {/* footer */}
+      {/*Section 2  */}
+      <div className='bg-pure-greys-5 text-richblack-700'>
+            <div className='homepage_bg h-[310px]'>
 
+                <div className='w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-5 mx-auto'>
+                    <div className='h-[150px]'></div>
+                    <div className='flex flex-row gap-7 text-white '>
+                        <CTAButton active={true} linkto={"/signup"}>
+                            <div className='flex items-center gap-3' >
+                                Explore Full Catalog
+                                <FaArrowRight />
+                            </div>
+                            
+                        </CTAButton>
+                        <CTAButton active={false} linkto={"/signup"}>
+                            <div>
+                                Learn more
+                            </div>
+                        </CTAButton>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            <div className='mx-auto w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-7'>
+
+                <div className='flex flex-row gap-5 mb-10 mt-[95px]'>
+                    <div className='text-4xl font-semibold w-[45%]'>
+                        Get the Skills you need for a
+                        <HighlightText text={"Job that is in demand"} />
+                    </div>
+
+                    <div className='flex flex-col gap-10 w-[40%] items-start'>
+                    <div className='text-[16px]'>
+                    The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
+                    </div>
+                    <CTAButton active={true} linkto={"/signup"}>
+                        <div>
+                            Learn more
+                        </div>
+                    </CTAButton>
+                    </div>
+
+                </div>
+                
+                
+
+                <TimelineSection />
+
+                <LearningLanguageSection />
+
+            </div>
+
+            
+
+      </div>
+
+
+          
     </div>
+
   )
 }
 
