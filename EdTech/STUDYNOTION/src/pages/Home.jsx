@@ -5,7 +5,7 @@ import HighlightText from '../components/core/Homepage/HighlightText';
 import CTAButton from '../components/core/Homepage/CTAButton';
 import Banner from "../assets/Images/banner.mp4"
 import CodeBlocks from '../components/core/Homepage/CodeBlocks';
-// import ExploreMore from '../components/core/Homepage/ExploreMore';
+import ExploreMore from '../components/core/Homepage/ExploreMore';
 import TimelineSection from '../components/core/Homepage/TimelineSection'
 import LearningLanguageSection from '../components/core/Homepage/LearningLanguageSection'
 function Home() {
@@ -113,7 +113,7 @@ function Home() {
             backgroundGradient={<div className="codeblock2 absolute"></div>}
           />
         </div>  
-          {/* <ExploreMore /> */}
+          <ExploreMore />
         </div>
 
       {/*Section 2  */}
