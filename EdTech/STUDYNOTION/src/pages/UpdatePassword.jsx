@@ -9,7 +9,7 @@ function UpdatePassword() {
 
     const [formData, setFormData] = useState({
         password:"",
-        confirmPassword:"",
+        confirmPassword:""
     })
     
     const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +23,7 @@ function UpdatePassword() {
         setFormData((prevData) => (
             {
                 ...prevData,
-                [e.target.name]:[e.target.value],
+                [e.target.name]:e.target.value,
             }
         )
         )
@@ -31,14 +31,13 @@ function UpdatePassword() {
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        // const token = location.pathname.split('/').at(-1);
-        const {token} = useParams();
-        console.log("printing token in update password page ", token);
+        const token = location.pathname.split('/').at(-1);
+        // console.log("printing token in update password page ", token);
         dispatch(resetPassword(password, confirmPassword, token));
     }
 
   return (
-    <div>
+    <div className='text-white'>
         {
             loading ? (
                 <div>
@@ -60,6 +59,7 @@ function UpdatePassword() {
                                 name='password'
                                 value={password}
                                 onChange={handleOnChange}
+                                className='w-full p-6 bg-richblack-600 text-richblack-5'
                             />
 
                             <span
@@ -79,10 +79,11 @@ function UpdatePassword() {
                                 name='confirmPassword'
                                 value={confirmPassword}
                                 onChange={handleOnChange}
+                                className='w-full p-6 bg-richblack-600 text-richblack-5'
                             />
 
                             <span
-                            onClick={() => showConfirmPassword((prev) => !prev)}
+                            onClick={() => setShowConfirmPassword((prev) => !prev)}
                             >
                                 {
                                     showConfirmPassword ? <AiFillEyeInvisible fontSize={24}/> : <AiFillEye fontSize={24}/>
