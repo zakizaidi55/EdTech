@@ -1,10 +1,10 @@
 import React from 'react'
 
 const Stats = [
-    {Count:"5K", label:"Active Students"},
-    {Count:"200+", label:"Mentors"},
-    {Count:"5K", label:"Courses"},
-    {Count:"50+", label:"Awards"},
+    {count:"5K", label:"Active Students"},
+    {count:"200+", label:"Mentors"},
+    {count:"5K", label:"Courses"},
+    {count:"50+", label:"Awards"},
 
 ];
 const StatsComponent =() => {
@@ -12,20 +12,21 @@ const StatsComponent =() => {
     <div>
         <section>
             <div>
-                <div>
+                <div className='flex gap-x-5'>
                     {
-                        Stats.map((index, data) => {
-                        return (
-                            <div key={index}> 
-                                <h1>
-                                    {data.Count}
-                                </h1>
-                                <h2>
-                                    {data.label}
-                                </h2>
-                            </div>
-                        )
-                    })
+                        Stats.map((data, index) => {
+                            return (
+                                <div key={index}>
+                                    <h1>
+                                        {data.count}
+                                    </h1>
+
+                                    <h2>
+                                        {data.label}
+                                    </h2>
+                                </div>
+                            )
+                        })
                     }
                 </div>
             </div>
