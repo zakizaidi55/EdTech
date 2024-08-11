@@ -18,7 +18,7 @@ return (
           children ? (
               <>
                   <span>
-                      {text}
+                    {text}
                   </span>
                   {children}
               </>

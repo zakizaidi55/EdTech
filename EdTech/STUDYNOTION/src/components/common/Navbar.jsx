@@ -23,7 +23,7 @@ export const Navbar = () => {
     const fetchSubLinks = async() => {
         try {
             const result = await apiConnector("GET", categories.CATEGORIES_API);
-            console.log("printing sublinks results ", result );
+            // console.log("printing sublinks results ", result );
             setSubLinks(result.data.data);
         } catch (error) {
             console.log("Error while fetching the categories");
@@ -33,6 +33,7 @@ export const Navbar = () => {
     useEffect( () => {
         fetchSubLinks();
     },[])
+
 
     const matchRoute = (route) => {
         return matchPath({path:route}, location.pathname)

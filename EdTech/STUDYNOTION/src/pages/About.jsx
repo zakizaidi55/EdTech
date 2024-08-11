@@ -4,11 +4,15 @@ import BannerImage1 from "../assets/Images/aboutus1.webp";
 import BannerImage2 from "../assets/Images/aboutus2.webp";
 import BannerImage3 from "../assets/Images/aboutus3.webp";
 import Quote from '../components/core/About/Quote';
-import FoundingStory from "../assets/Images/FoundingStory.png"
+import FoundingStory from "../assets/Images/FoundingStory.png";
+import StatsComponent from '../components/core/About/StatsComponent';
+import LearningGrid from '../components/core/About/LearningGrid';
+import ContactFormSection from '../components/core/About/ContactFormSection';
+import Footer from "../components/common/Footer"
 
 function About() {
   return (
-    <div className='mt-[100px] text-white'>
+    <div className='mx-auto mt-[100px] text-white w-11/12 max-w-maxContent'>
         {/* section 1 */}
         <section>
         <div>
@@ -33,8 +37,9 @@ function About() {
        </div>
 
        {/* section 3 */}
-       <section>
-        <div>
+       <section className='flex flex-col'>
+        <div className='flex'>
+        {/* founding story div */}
           <div>
           {/* left box */}
             <div>
@@ -48,8 +53,44 @@ function About() {
               <img src={FoundingStory}/>
             </div>
           </div>
+
+          {/* vision and mission div */}
+          <div>
+            {/* left box */}
+            <div>
+              <h1>Our Vision</h1>
+              <p>With this vision in mind, we set out on a journey to create an e-learning platform that would revolutionize the way people learn. Our team of dedicated experts worked tirelessly to develop a robust and intuitive platform that combines cutting-edge technology with engaging content, fostering a dynamic and interactive learning experience.</p>
+            </div>
+            {/* right box */}
+            <div>
+              <h1>Our Mission</h1>
+              <p>our mission goes beyond just delivering courses online. We wanted to create a vibrant community of learners, where individuals can connect, collaborate, and learn from one another. We believe that knowledge thrives in an environment of sharing and dialogue, and we foster this spirit of collaboration through forums, live sessions, and networking opportunities.</p>
+
+            </div>
+
+          </div>
         </div>
        </section>
+
+       {/* section4 */}
+       <section>
+        <StatsComponent/>
+       </section>
+        
+
+        {/* section 5 learning grid */}
+        <section className='flex flex-col mx-auto items-center justify-center gap-5 mb-[140px]'>
+          <LearningGrid/>
+          <ContactFormSection/>
+        </section>
+        
+        <section>
+          Review Slider
+        </section>
+
+        <section>
+          <Footer/>
+        </section>
         
     </div>
   )

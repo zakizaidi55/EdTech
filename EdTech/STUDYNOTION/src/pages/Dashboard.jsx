@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
+import Sidebar from "../components/core/Dashboard/Sidebar"
 import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 function Dashboard() {
-    const {loading:authLoading} = useState((state) => state.auth);
-    const {loading:profileLoading} = useState((state) => state.profile);
-
-
+    const {loading:authLoading} = useSelector((state) => state.auth);
+    const {loading:profileLoading} = useSelector((state) => state.profile);
     if(profileLoading || authLoading) {
         return (
             <div>

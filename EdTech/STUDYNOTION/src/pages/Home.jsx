@@ -8,6 +8,7 @@ import CodeBlocks from '../components/core/Homepage/CodeBlocks';
 import ExploreMore from '../components/core/Homepage/ExploreMore';
 import TimelineSection from '../components/core/Homepage/TimelineSection'
 import LearningLanguageSection from '../components/core/Homepage/LearningLanguageSection'
+import Footer from '../components/common/Footer';
 function Home() {
   return (
     <div>
@@ -175,7 +176,8 @@ function Home() {
 
       </div>
 
-
+      {/* footer */}
+      <Footer/>  
           
     </div>
 
