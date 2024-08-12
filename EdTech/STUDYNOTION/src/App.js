@@ -14,9 +14,11 @@ import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
 import Error from "./pages/Error";
 import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
+import Settings from "./components/core/Dashboard/Settings/index";
 import Cart from "./components/core/Dashboard/Cart";
 import {ACCOUNT_TYPE} from "./utils/constants";
 import { useSelector } from "react-redux";
+import Contact from "./pages/Contact";
 
 
 function App() {
@@ -78,6 +80,8 @@ function App() {
            }
          />
 
+        <Route path="/contact" element={<Contact/>} />
+
            <Route
             element ={
               <PrivateRoute>
@@ -85,7 +89,9 @@ function App() {
               </PrivateRoute>
             }
             >
+
               <Route path="dashboard/my-profile" element={<MyProfile />} />
+              <Route path="/dashboard/settings" element={<Settings/>}/>
               
               {
                 user?.accountType === ACCOUNT_TYPE.STUDENT && (
