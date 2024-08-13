@@ -18,7 +18,6 @@ export default function ProfileDropdown() {
   useOnClickOutside(ref, () => setOpen(false))
 
   if (!user) return null
-
   return (
   <button className="relative" onClick={() => setOpen(true)}>
     <div className="flex items-center gap-x-1">
