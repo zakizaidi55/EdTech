@@ -22,7 +22,8 @@ import Contact from "./pages/Contact";
 
 
 function App() {
-  const {user} = useSelector((state) => state.auth);
+  const {user} = useSelector((state) => state.profile);
+  // console.log("user:", user?.accountType )
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter ">
     <Navbar/>
@@ -80,7 +81,7 @@ function App() {
            }
          />
 
-        <Route path="/contact" element={<Contact/>} />
+        <Route path="contact" element={<Contact/>} />
 
            <Route
             element ={
@@ -90,14 +91,15 @@ function App() {
             }
             >
 
-              <Route path="dashboard/my-profile" element={<MyProfile />} />
+              <Route path="/dashboard/my-profile" element={<MyProfile />} />
               <Route path="/dashboard/settings" element={<Settings/>}/>
+              
               
               {
                 user?.accountType === ACCOUNT_TYPE.STUDENT && (
                   <>
-                    <Route path="dashboard/enrolled-courses" element={<EnrolledCourses/>} />
-                    <Route path="dashboard/Cart" element={<Cart/>} />
+                    <Route path="/dashboard/enrolled-courses" element={<EnrolledCourses/>} />
+                    <Route path="/dashboard/Cart" element={<Cart/>} />
                   </>
                 )
               }
