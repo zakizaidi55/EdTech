@@ -50,7 +50,19 @@ export default function NestedView({ handleChangeEditSectionName }) {
   return (
     <>
       <div className="rounded-lg bg-richblack-700 p-6 px-8" id="nestedViewContainer">
-        
+        {
+          course?.courseContent?.map((section) => (
+            <details>
+              <summary>
+                <div>
+                  <RxDropdownMenu/>
+                  <p>{section.sectionName}</p>
+                </div>
+              </summary>
+
+            </details>
+          ))
+        }
       </div>
     </>
   )
