@@ -53,10 +53,18 @@ export default function NestedView({ handleChangeEditSectionName }) {
         {
           course?.courseContent?.map((section) => (
             <details>
-              <summary>
-                <div>
+              <summary className="flex items-center justify-between gap-x-3 border-b-2">
+                <div className="flex items-center gap-x-3">
                   <RxDropdownMenu/>
                   <p>{section.sectionName}</p>
+                </div>
+                <div>
+                  <button 
+                  onClick={handleChangeEditSectionName(section._id, section.sectionName)}
+                  className="flex items-center gap-x-3">
+                    <MdEdit/>
+                  </button>
+
                 </div>
               </summary>
 
