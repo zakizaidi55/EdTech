@@ -10,6 +10,7 @@ import {deleteSection,deleteSubSection} from "../../../../../services/operations
 import { setCourse } from "../../../../../reducers/slices/courseSlice"
 import ConfirmationModal from "../../../../common/ConfirmationModal"
 import SubSectionModal from "./SubSectionModal"
+import { BiSolidDownArrow } from "react-icons/bi"
 
 export default function NestedView({ handleChangeEditSectionName }) {
   const { course } = useSelector((state) => state.course)
@@ -60,11 +61,27 @@ export default function NestedView({ handleChangeEditSectionName }) {
                 </div>
                 <div>
                   <button 
-                  onClick={handleChangeEditSectionName(section._id, section.sectionName)}
+                  onClick={() => handleChangeEditSectionName(section._id, section.sectionName)}
                   className="flex items-center gap-x-3">
                     <MdEdit/>
                   </button>
 
+                  <button
+                  onClick={() => {
+                    setConfirmationModal({
+                      text1:"Delete this section",
+                      text2:"All the lectures will be deleted",
+                      btn1Text:"Delete",
+                      btn2Text:"Cancel",
+                      btn1Handler: () => handleDeleleSection(section._id),
+                      btn2Handler:() => setConfirmationModal(null),
+                    })
+                  }}
+                  >
+                    <RiDeleteBin6Line/>
+                  </button>
+                  
+                  <span> | <BiSolidDownArrow className={`text-xl text-richblack-300 `}/></span>
                 </div>
               </summary>
 
