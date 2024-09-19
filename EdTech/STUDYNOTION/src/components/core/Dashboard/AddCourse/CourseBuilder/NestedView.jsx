@@ -84,7 +84,40 @@ export default function NestedView({ handleChangeEditSectionName }) {
                   <span> | <BiSolidDownArrow className={`text-xl text-richblack-300 `}/></span>
                 </div>
               </summary>
+                  {
+                    section.subSection.map((data ) => (
+                      <div key = {data?.id}
+                      onClick={() => setViewSubSection(data)}
+                      className="flex items-center justify-between gap-x-3 border-b-2"
+                      >
+                        <div className="flex items-center gap-x-3">
+                          <RxDropdownMenu/>
+                          <p>{data.title}</p>
+                        </div>
 
+                        <div className="flex items-center gap-x-3">
+                          <button onClick={() => setEditSubSection({...data, sectionId:section._id})}>
+                            <MdEdit/>
+                          </button>
+
+                          <button
+                          onClick={() => {
+                            setConfirmationModal({
+                              text1:"Delete this sub section",
+                              text2:"Selected Lecture will be deleted",
+                              btn1Text:"Delete",
+                              btn2Text:"Cancel",
+                              btn1Handler: () => handleDeleleSection(section._id),
+                              btn2Handler:() => setConfirmationModal(null),
+                            })
+                          }}
+                          >
+                    <RiDeleteBin6Line/>
+                  </button>
+                        </div>
+                      </div>
+                    ))
+                  }
             </details>
           ))
         }
