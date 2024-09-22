@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { AiFillCaretDown } from "react-icons/ai"
+import { AiFillCaretDown, AiOutlineAim, AiOutlinePlus } from "react-icons/ai"
 import { FaPlus } from "react-icons/fa"
 import { MdEdit } from "react-icons/md"
 import { RiDeleteBin6Line } from "react-icons/ri"
@@ -107,21 +107,57 @@ export default function NestedView({ handleChangeEditSectionName }) {
                               text2:"Selected Lecture will be deleted",
                               btn1Text:"Delete",
                               btn2Text:"Cancel",
-                              btn1Handler: () => handleDeleleSection(section._id),
+                              btn1Handler: () => handleDeleteSubSection(section._id),
                               btn2Handler:() => setConfirmationModal(null),
                             })
                           }}
                           >
                     <RiDeleteBin6Line/>
-                  </button>
+                    </button>
                         </div>
                       </div>
                     ))
                   }
+
+                  <button
+                  className="mt-4 flex items-center gap-x-2 text-yellow-5"
+                  onClick={() => setAddSubsection(section._id)}
+                  >
+                    <AiOutlinePlus/>
+                    <p>Add Lecture</p>
+                  </button>
             </details>
           ))
         }
       </div>
+
+      {addSubSection ? (<SubSectionModal
+        modalData={addSubSection}
+        setModalData={setAddSubsection}
+        add={true}
+      />) : 
+
+      viewSubSection ? (<SubSectionModal
+        modalData={viewSubSection}
+        setModalData={setViewSubSection}
+        view={true}
+      />) : 
+
+      editSubSection ? (<SubSectionModal
+        modalData={editSubSection}
+        setModalData={setEditSubSection}
+        edit={true}
+      />) : 
+      (<div></div>) }
+
+
+      {
+        confirmationModal ? (
+          <ConfirmationModal modalData={confirmationModal}/>
+        ) : (<div></div>)
+        
+        
+      }
     </>
   )
 }
