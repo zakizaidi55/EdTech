@@ -97,7 +97,7 @@ export default function NestedView({ handleChangeEditSectionName }) {
 
                         <div className="flex items-center gap-x-3">
                           <button onClick={() => setEditSubSection({...data, sectionId:section._id})}>
-                            <MdEdit/>
+                            <MdEdit/> 
                           </button>
 
                           <button
