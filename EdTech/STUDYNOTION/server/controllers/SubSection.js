@@ -135,4 +135,4 @@ exports.createSubSection = async (req, res) => {
         message: "An error occurred while deleting the SubSection",
       })
     }
-  }
+}

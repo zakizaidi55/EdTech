@@ -84,6 +84,7 @@ export default function CourseBuilderForm() {
       toast.error("Please add atleast one lecture in each section")
       return
     }
+    setStep(3);
     dispatch(setStep(3))
   }
 

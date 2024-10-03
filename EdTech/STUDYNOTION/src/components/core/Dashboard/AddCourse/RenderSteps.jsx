@@ -3,6 +3,7 @@ import { FaCheck } from 'react-icons/fa';
 import { useSelector } from 'react-redux'
 import CourseInformationForm from './CourseInformation/CourseInformationForm'
 import CourseBuilderForm from './CourseBuilder/CourseBuilderForm';
+import PublishCourse from './PublishCourse/PublishCourse';
 
 function RenderSteps() {
 
@@ -83,9 +84,8 @@ function RenderSteps() {
       </div>
       {/* Render specific component based on current step */}
       {step === 1 && <CourseInformationForm />}
-      {step === 2 && <CourseBuilderForm />
-      /* {step === 3 &&  <PublishCourse /> } */
-      }
+      {step === 2 && <CourseBuilderForm />}
+      {step === 3 &&  <PublishCourse /> }
     </>
   )
 }
