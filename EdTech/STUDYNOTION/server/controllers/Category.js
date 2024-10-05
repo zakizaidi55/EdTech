@@ -82,7 +82,10 @@ exports.categoryPageDetails = async (req, res) => {
 		}
 
 		// Get top-selling courses across all categories
-		const allCategories = await Category.find().populate("courses");
+		const allCategories = await Category.find().populate({
+			path:"courses",
+			match:{status:"Published"},
+		});
 		const allCourses = allCategories.flatMap((category) => category.courses);
 		const mostSellingCourses = allCourses
 			.sort((a, b) => b.sold - a.sold)
