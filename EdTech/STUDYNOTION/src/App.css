@@ -23,6 +23,10 @@ html, body {
     filter: blur(34px);
     transform: matrix(1, 0, -0.03, 1, 0, 0);
   }
+
+  .yellowButton {
+    @apply cursor-pointer rounded-md bg-yellow-50 px-[20px] py-[8px] font-semibold text-richblack-900;
+  }
   .codeblock2 {
     position: absolute;
     width: 372.95px;

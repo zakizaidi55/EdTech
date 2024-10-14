@@ -10,6 +10,7 @@ import {apiConnector} from "../../services/apiconnector";
 import { IoIosArrowDropdownCircle } from 'react-icons/io';
 import { BsChevronDown } from 'react-icons/bs';
 import { ACCOUNT_TYPE } from  '../../utils/constants'
+import ProfileDropdown from '../core/Auth/ProfileDropDown';
 
 
 // const subLinks = [
@@ -41,15 +42,15 @@ export const Navbar = () => {
     const [loading, setLoading] = useState(false);
 
 
-    const [subLinks, setSubLinks] = useState([]);
+  const [subLinks, setSubLinks] = useState([]);
 
     const fetchSubLinks = async() => {
         try {
             const result = await apiConnector("GET", categories.CATEGORIES_API);
             //console.log("printing sublinks results ", result );
             setSubLinks(result.data.data);
-            console.log("Printing the sub links");
-            console.log(subLinks);
+            // console.log("Printing the sub links");
+            // console.log(subLinks);
         } catch (error) {
             console.log("Error while fetching the categories");
         }
@@ -151,7 +152,18 @@ export const Navbar = () => {
           </ul>
         </nav>
         {/* Login / Signup / Dashboard */}
-        <div className="hidden items-center gap-x-4 md:flex">
+         {/* Login / Signup / Dashboard */}
+         <div className="hidden items-center gap-x-4 md:flex">
+          {user && user?.accountType !== ACCOUNT_TYPE.INSTRUCTOR && (
+            <Link to="/dashboard/cart" className="relative">
+              <AiOutlineShoppingCart className="text-2xl text-richblack-100" />
+              {totalItems > 0 && (
+                <span className="absolute -bottom-2 -right-2 grid h-5 w-5 place-items-center overflow-hidden rounded-full bg-richblack-600 text-center text-xs font-bold text-yellow-100">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
+          )}
           {token === null && (
             <Link to="/login">
               <button className="rounded-[8px] border border-richblack-700 bg-richblack-800 px-[12px] py-[8px] text-richblack-100">
@@ -166,7 +178,7 @@ export const Navbar = () => {
               </button>
             </Link>
           )}
-          {token !== null && <ProfileDropDown />}
+          {token !== null && <ProfileDropdown />}
         </div>
         <button className="mr-4 md:hidden">
           <AiOutlineMenu fontSize={24} fill="#AFB2BF" />

@@ -10,6 +10,7 @@ import { COURSE_STATUS } from '../../../../utils/constants';
 import { deleteCourse, fetchInstructorCourses } from '../../../../services/operations/courseDetailsAPI';
 import { setCourse } from '../../../../reducers/slices/courseSlice';
 import { useNavigate } from 'react-router-dom';
+import { formatDate } from '../../../../services/formatDate';
 
 function CourseTable({courses, setCourses}) {
     const dispatch = useDispatch();
@@ -77,7 +78,7 @@ function CourseTable({courses, setCourses}) {
                     {course.courseDescription}
                     </p>
                     <p className="text-[12px] text-white">
-                      Created:
+                      Created: {formatDate(course.createdAt)}
                     </p>
                     {course.status === COURSE_STATUS.DRAFT ? (
                       <p className="flex w-fit flex-row items-center gap-2 rounded-full bg-richblack-700 px-2 py-[2px] text-[12px] font-medium text-pink-100">

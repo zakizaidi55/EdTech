@@ -32,7 +32,7 @@ useEffect(() => {
     const getCategoryDetails = async() => {
         try {
             const res = await getCatalogPageData(categoryId);
-            c//onsole.log("Printing getCategoryDetails res ", res);
+            //console.log("Printing getCategoryDetails res ", res);
             setCatalogPageData(res);
         } catch(error) {
             console.log(error);
