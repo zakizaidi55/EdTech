@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getUserEnrolledCourses } from '../../../services/operations/profileAPI';
 import ProgressBar from '@ramonak/react-progress-bar';
+import { useNavigate } from 'react-router-dom';
 
 function EnrolledCourses() {
   const { token } = useSelector((state) => state.auth)
-  
+  const navigate = useNavigate()
 
   const [enrolledCourses, setEnrolledCourses] = useState(null)
   const getEnrolledCourses = async () => {
@@ -31,6 +32,7 @@ function EnrolledCourses() {
       ) : !enrolledCourses.length ? (
         <p className="grid h-[10vh] w-full place-content-center text-richblack-5">
           You have not enrolled in any course yet.
+          {/* TODO: Modify this Empty State */}
         </p>
       ) : (
         <div className="my-8 text-richblack-5">
@@ -49,7 +51,13 @@ function EnrolledCourses() {
               key={i}
             >
               <div
-                className="flex w-[45%] cursor-pointer items-center gap-4 px-5 py-3">
+                className="flex w-[45%] cursor-pointer items-center gap-4 px-5 py-3"
+                onClick={() => {
+                  navigate(
+                    `/view-course/${course?._id}/section/${course.courseContent?.[0]?._id}/sub-section/${course.courseContent?.[0]?.subSection?.[0]?._id}`
+                  )
+                }}
+              >
                 <img
                   src={course.thumbnail}
                   alt="course_img"
