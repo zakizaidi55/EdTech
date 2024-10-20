@@ -42,8 +42,8 @@ function VideoDetails() {
                 // lets assume all three fields are present
 
                 const filteredData = courseSectionData.filter((course) => course._id === sectionId);
-
-                const filteredVideoData = filteredData?.[0].subsection.filter((data) => data._id === subSectionId);
+                console.log("printing filtered data", filteredData);
+                const filteredVideoData = filteredData?.[0]?.subSection.filter((data) => data._id === subSectionId)
 
                 setVideoData(filteredVideoData[0]);
                 setVideoEnded(false);
